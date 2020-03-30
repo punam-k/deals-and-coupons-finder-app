@@ -11,8 +11,8 @@ import { ApiService } from '../service/api.service';
 export class LoginComponent implements OnInit {
 
   submitted = false;
-  employeeForm: FormGroup;
-  EmployeeProfile:any = ['Admin','BDM','Developer','Finance','HR','Sales'];
+  userForm: FormGroup;
+  UserProfile:any = ['Admin','BDM','Developer','Finance','HR','Sales'];
   
   constructor(
     public fb: FormBuilder,
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() { }
 
   mainForm() {
-    this.employeeForm = this.fb.group({
+    this.userForm = this.fb.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       designation: ['', [Validators.required]],
@@ -36,30 +36,30 @@ export class LoginComponent implements OnInit {
 
   // Choose designation with select dropdown
   updateProfile(e){
-    this.employeeForm.get('designation').setValue(e, {
+    this.userForm.get('designation').setValue(e, {
       onlySelf: true
     })
   }
 
   // Getter to access form control
   get myForm(){
-    return this.employeeForm.controls;
+    return this.userForm.controls;
   }
 
   onSubmit() {
     this.submitted = true;
-    if (!this.employeeForm.valid) {
+    if (!this.userForm.valid) {
       return false;
     } else {
-      this.apiService.createEmployee(this.employeeForm.value).subscribe(
+      this.apiService.createUser(this.userForm.value).subscribe(
         (res) => {
-          console.log('Employee successfully created!')
-          this.ngZone.run(() => this.router.navigateByUrl('/employees-list'))
+          console.log('User successfully created!')
+         //this.ngZone.run(() => this.router.navigateByUrl('/home'))
+          this.ngZone.run(() => this.router.navigateByUrl('/users-list'))
         }, (error) => {
           console.log(error);
         });
     }
   }
-
 }
 
