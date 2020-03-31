@@ -10,10 +10,9 @@ import { AboutComponent } from './about/about.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserEditComponent } from './user-edit/user-edit.component';
-import { UsersListComponent } from './users-list/users-list.component';
 
 @NgModule({
   declarations: [
@@ -25,13 +24,13 @@ import { UsersListComponent } from './users-list/users-list.component';
     HeaderComponent,
     FooterComponent,
     LoginComponent,
-    UserEditComponent,
-    UsersListComponent
+    UserEditComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule
   ],
   providers: [],

@@ -54,8 +54,8 @@ export class LoginComponent implements OnInit {
       this.apiService.createUser(this.userForm.value).subscribe(
         (res) => {
           console.log('User successfully created!')
-         //this.ngZone.run(() => this.router.navigateByUrl('/home'))
-          this.ngZone.run(() => this.router.navigateByUrl('/users-list'))
+         this.ngZone.run(() => this.router.navigateByUrl('/home'))
+         // this.ngZone.run(() => this.router.navigateByUrl('/users-list'))
         }, (error) => {
           console.log(error);
         });

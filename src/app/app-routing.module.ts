@@ -5,7 +5,6 @@ import { CouponsComponent } from './coupons/coupons.component';
 import { NewsComponent } from './news/news.component';
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
-import { UsersListComponent } from './users-list/users-list.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
 
 
@@ -15,7 +14,6 @@ const routes: Routes = [
   { path: 'coupons', component: CouponsComponent },
   { path: 'news', component: NewsComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'users-list', component: UsersListComponent },
   { path: 'edit-user/:id', component: UserEditComponent },
 
 ];

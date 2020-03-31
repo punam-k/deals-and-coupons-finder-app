@@ -76,8 +76,8 @@ export class UserEditComponent implements OnInit {
         let id = this.actRoute.snapshot.paramMap.get('id');
         this.apiService.updateUser(id, this.editForm.value)
           .subscribe(res => {
-           this.router.navigateByUrl('/users-list');
-          // this.router.navigateByUrl('/home');
+          // this.router.navigateByUrl('/users-list');
+           this.router.navigateByUrl('/home');
             console.log('Content updated successfully!')
           }, (error) => {
             console.log(error)
