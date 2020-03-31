@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CouponsService } from '../service/coupons.service';
 
 @Component({
   selector: 'app-coupons',
@@ -6,59 +7,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./coupons.component.css']
 })
 export class CouponsComponent implements OnInit {
-  coupons : Object=[
-    {
-      "image" : "../../assets/images/kids1.jpg",
-      "heading" : "Prime Deals",
-      "offer": "Kids Offer- Free Meals for Children ",
-      "detailsInfo" : "Min 25% off at the hottest premium restaurants",
-      
-    },
-    {
-      "image" : "../../assets/images/best-food.jpg",
-      "heading" : "50% OFF",
-      "offer": "Food At best offers on Orders | All users",
-      "detailsInfo" : "Mindblowing 50% off deals in your city",
-    },
-    {
-      "image" : "../../assets/images/drinks.jpg",
-      "heading" : "20% OFF on drinks",
-      "offer": "Flat 20% OFF On Orders | All users",
-      "detailsInfo" : "Enjoy flat 50% off on drinks and sweets",
-      
-    },
-    {
-      "image" : "../../assets/images/best-food.jpg",
-      "heading" : "50% OFF",
-      "offer": "Food At best offers on Orders | All users",
-      "detailsInfo" : "Mindblowing 50% off deals in your city",
-    },
-    {
-      "image" : "../../assets/images/drinks.jpg",
-      "heading" : "20% OFF on drinks",
-      "offer": "Flat 20% OFF On Orders | All users",
-      "detailsInfo" : "Enjoy flat 50% off on drinks and sweets",
-      
-    },
-    {
-      "image" : "../../assets/images/kids1.jpg",
-      "heading" : "Prime Deals",
-      "offer": "Kids Offer- Free Meals for Children ",
-      "detailsInfo" : "Minimum 25% off at the hottest and most premium restaurants",
-      
-    },
  
   
-  ];
+  deliverdooCouponsDetails:any;
+  doordashCouponsDetails :any;
+  swiggyCouponsDetails:any;
+  uberCouponsDetails:any;
+  zomatoCouponsDetails:any;
 
-  
-
-  constructor() {
-  
-   }
+  constructor(private couponService : CouponsService) { }
 
   ngOnInit(): void {
+    this.couponService.getDeliverdooCoupons().subscribe(data=>this.deliverdooCouponsDetails=data);
+    
+    this.couponService.getDoordashCoupons().subscribe(flight=>this.doordashCouponsDetails=flight);
+
+    this.couponService.getSwiggyCoupons().subscribe(train=>this.swiggyCouponsDetails=train);
+
+    this.couponService.getUberCoupons().subscribe(hotel=>this.uberCouponsDetails=hotel);
+
+    this.couponService.getZomatoCoupons().subscribe(fashion=>this.zomatoCouponsDetails=fashion);
   }
+
+  flip() {
+    
+  }
+
 
 
 }
