@@ -29,9 +29,7 @@ export class CouponsComponent implements OnInit {
     this.couponService.getZomatoCoupons().subscribe(fashion=>this.zomatoCouponsDetails=fashion);
   }
 
-  flip() {
-    
-  }
+ 
 
 
 
