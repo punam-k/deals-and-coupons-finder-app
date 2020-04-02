@@ -18,7 +18,7 @@ mongoose.connect(dbConfig.db, {
 )
 
 // Setting up port with express js
-const userRoute = require('../backend/routes/user.route')
+const route = require('../backend/routes/index.route.js')
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -49,3 +49,41 @@ app.use(function (err, req, res, next) {
 
 
 
+
+
+
+
+
+
+//connection to mongoose
+mongoose.connect('mongodb://localhost:27017/mydb');
+
+//on connection
+mongoose.connection.on('connected', ()=>{
+    console.log(('MongoDB connected at port 27017'));
+});
+
+//on connection error
+mongoose.connection.on('error', (err)=>{
+    console.log(err);
+});
+
+const PORT = 3000;
+
+//adding middleware --cors
+
+app.use(cors());
+
+//body-parser
+
+app.use(bodyparser.json());
+
+app.use('/api', route);
+
+app.get('/', ( req, res)=> {
+    res.send('Winny');
+})
+
+app.listen(PORT, ()=> {
+    console.log('Server has been started at port:'+PORT);
+})
