@@ -1,93 +1,53 @@
-const express = require('express');
-const app = express();
-const couponRoute = express.Router();
-
-// Coupon model
-let Coupon = require('../models/Coupons');
-
-// Get All Coupons
-couponRoute.route('/coupons').get((req, res) => {
-  Coupon.find((error, coupons) => {
-    if (error) {
-      return next(error)
-    } else {
-      res.json(coupons)
-    }
-  })
-})
+const express=require('express');
+const router=express.Router();
+const Item=require('../models/item.model');
 
 
-// Add Coupon
-couponRoute.route('/coupon-item').post((req, res, next) => {
-    let newCouponItem = new Item({
-        id : req.body.id,
-        image : req.body.image,
-        heading : req.body.heading,
-        offer: req.body.offer, 
-        detailsInfo: req.body.detailsInfo
-      
-    });
-    newCouponItem.save((err, coupon)=>{
-        if(err) {
+//retriving data from database
+
+router.get('/items',(req,res,next)=>{
+    Item.find(function(err,mesg){
+        if(err){
+            res.json(err );
+        }
+        else{
+            res.json(mesg);
+        }
+    })
+   
+});
+//Inserting the data
+router.post('/item',(req,res,next)=>{
+    let newItem= new Item({
+        id:req.body.id,
+        name: req.body.name,
+        price:req.body.price,
+        rating:req.body.rating,
+        imageurl: req.body.imageurl  
+    })
+    newItem.save((err,newItem)=>{
+        if(err){
             res.json(err);
         }
-        else {
-            res.json({msg: 'Item has been added Sucessfully'});
+        else{
+            res.json("item added sucessfully");
         }
-    });
-});
+    })
+})
+//delete the data
+router.delete('/:id',(req,res,next)=>{
 
-
-// Get single coupon
-couponRoute.route('/read-coupon-item/:id').get((req, res) => {
-  Coupon.findById(req.params.id, (error, coupon) => {
-    if (error) {
-        res.json(error);
-    } else {
-      res.json(coupon)
-    }
-  })
+    Item.findByIdAndDelete({ _id: req.params.id }, (err, result) => {
+        if (err)
+            res.status(404).send(err);
+        else
+            res.status(200).send(result)
+    })
 })
 
 
-// Update coupon
-couponRoute.route('/update-coupons-item/:id').put((req, res, next) => {
-  Coupon.findByIdAndUpdate(req.params.id, {
-    $set: {
-        id : req.body.id,
-        image : req.body.image,
-        heading : req.body.heading,
-        offer: req.body.offer, 
-        detailsInfo: req.body.detailsInfo
-    }
-  }, (error, coupon) => {
-    if (error) {
-        res.json(error);
-      console.log(error)
-    } else {
-      res.json(coupon)
-      console.log('Data updated successfully')
-    }
-  })
-})
-
-
-// Delete coupon
-couponRoute.route('/delete-coupon-item/:id').delete((req, res, next) => {
-  Coupon.findOneAndRemove(req.params.id, (error, coupon) => {
-    if (error) {
-        res.json(error);
-    } else {
-      res.status(200).json({
-        msg: coupon
-      })
-    }
-  })
-})
-
-
-module.exports = couponRoute;
 
 
 
 
+module.exports=router;

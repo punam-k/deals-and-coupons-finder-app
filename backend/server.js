@@ -18,7 +18,13 @@ mongoose.connect(dbConfig.db, {
 )
 
 // Setting up port with express js
-const route = require('../backend/routes/index.route.js')
+const userRoute = require('../backend/routes/user.route')
+//Router connection
+
+
+const couponRoute=require('../backend/routes/coupon.route');
+const cartRoute=require('../backend/routes/cart.route');
+const orderRoute=require('../backend/routes/order.route');
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -27,6 +33,9 @@ app.use(bodyParser.urlencoded({
 app.use(cors()); 
 app.use(express.static(path.join(__dirname, 'dist/mean-stack-crud-app')));
 app.use('/', express.static(path.join(__dirname, 'dist/mean-stack-crud-app')));
+app.use('/coupon',couponRoute);
+app.use('/cart',cartRoute);
+app.use('/order',orderRoute);
 app.use('/api', userRoute)
 
 // Create port
@@ -40,50 +49,12 @@ app.use((req, res, next) => {
    next(createError(404));
 });
 
+
+
+
 // error handler
 app.use(function (err, req, res, next) {
   console.error(err.message); // Log error message in our server's console
   if (!err.statusCode) err.statusCode = 500; // If err has no specified error code, set error code to 'Internal Server Error (500)'
   res.status(err.statusCode).send(err.message); // All HTTP requests must have a response, so let's send back an error with its status code and message
 });
-
-
-
-
-
-
-
-
-
-//connection to mongoose
-mongoose.connect('mongodb://localhost:27017/mydb');
-
-//on connection
-mongoose.connection.on('connected', ()=>{
-    console.log(('MongoDB connected at port 27017'));
-});
-
-//on connection error
-mongoose.connection.on('error', (err)=>{
-    console.log(err);
-});
-
-const PORT = 3000;
-
-//adding middleware --cors
-
-app.use(cors());
-
-//body-parser
-
-app.use(bodyparser.json());
-
-app.use('/api', route);
-
-app.get('/', ( req, res)=> {
-    res.send('Winny');
-})
-
-app.listen(PORT, ()=> {
-    console.log('Server has been started at port:'+PORT);
-})

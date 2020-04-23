@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserEditComponent } from './user-edit/user-edit.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { UserEditComponent } from './user-edit/user-edit.component';
     HeaderComponent,
     FooterComponent,
     LoginComponent,
-    UserEditComponent
+    UserEditComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

@@ -1,22 +1,22 @@
 const mongoose=require('mongoose');
-const itemSchema=mongoose.Schema({
+const cartSchema=mongoose.Schema({
     id:{
         type:Number
+        
     },
-    
     name:{
         type:String
+        
     },
-    
-    price :{
-        type:String
-    },
-   
-    rating:{
+  
+    price:{
         type:Number
+        
     },
     imageurl:{
         type:String
-    }
-});
-const Item=module.exports=mongoose.model('Item',itemSchema)
+    },
+   
+    
+})
+const Cart=module.exports=mongoose.model('Cart',cartSchema)

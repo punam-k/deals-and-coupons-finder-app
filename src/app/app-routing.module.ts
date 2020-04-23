@@ -6,12 +6,14 @@ import { NewsComponent } from './news/news.component';
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
+import { CartComponent } from './cart/cart.component';
 
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'coupons', component: CouponsComponent },
+  { path: 'cart', component: CartComponent },
   { path: 'news', component: NewsComponent },
   { path: 'about', component: AboutComponent },
   { path: 'edit-user/:id', component: UserEditComponent },
