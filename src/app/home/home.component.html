@@ -26,7 +26,7 @@
           <th scope="col">User ID</th>
           <th scope="col">Name</th>
           <th scope="col">Email</th>
-          <th scope="col">Designation</th>
+          <th scope="col">Password</th>
           <th scope="col">Phone No</th>
           <th scope="col center">Update</th>
         </tr>
@@ -36,7 +36,7 @@
           <th scope="row">{{user._id}}</th>
           <td>{{user.name}}</td>
           <td>{{user.email}}</td>
-          <td>{{user.designation}}</td>
+          <td>{{user.password}}</td>
           <td>{{user.phoneNumber}}</td>
           <td class="text-center edit-block">
             <span class="edit" [routerLink]="['/edit-user/', user._id]">

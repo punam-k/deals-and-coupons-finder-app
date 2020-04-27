@@ -17,6 +17,9 @@
           <a class="nav-link" routerLink="/coupons"><span class="header-link">Coupons</span></a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" routerLink="/cart"><span class="header-link">Cart</span></a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" routerLink="/news"><span class="header-link">News</span></a>
           </li>
         <li class="nav-item">
@@ -25,15 +28,30 @@
         
        
       </ul>
-      <form class="form-inline my-2 my-lg-0">
+      <!-- <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
+      </form> -->
+      <!-- <nav class="nav-item">
+        <a class="nav-link" routerLink="/login"><span class="header-link">Login</span></a>
+      </nav> -->
       <nav class="my-2 my-md-0 mr-md-3">
-        <a class="btn btn-outline-primary" routerLinkActive="active" routerLink="/profile">View User</a>
+        <a class="btn btn-outline-primary" routerLinkActive="active" *ngIf="!replaceUrl"routerLink="/login">Login</a>
       </nav>
-     
-   
+<!--      
+      <header class="group">
+        <nav class="group">         
+            <ul>
+              <li><a href="register.php" title="">Register</a></li>
+              <li><a href="login.php" title="">Login</a></li>   
+                  <li><a href="logout.php" title="">Logout</a></li>             
+            </ul>
+        </nav>
+    </header> -->
+    <a mat-list-item routerLinkActive="active" *ngIf="replaceUrl"(click)="logout()">
+      <span class="menu-text">LOGOUT</span>
+    </a>
+
     </div>
   </nav>
 </div>

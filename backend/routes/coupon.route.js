@@ -1,6 +1,6 @@
 const express=require('express');
 const router=express.Router();
-const Item=require('../models/item.model');
+const Item=require('../models/Coupons.js');
 
 
 //retriving data from database

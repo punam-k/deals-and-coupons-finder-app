@@ -1,26 +1,4 @@
-
- <nav class="navbar bg-faded" style="background-color: #12abdb">
-  <div class="container">
-    <!-- <ul class="nav navbar-nav pull-sm-left">
-      <li class="nav-item">
-        <a class="navbar-brand" href="#">
-          <img src="../../assets/images/food.png" style="width: 100px; height: 80px;">
-      </a>     
-      </li>
-    </ul> -->
-    <ul class="nav navbar-nav navbar-logo mx-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/"><h1 style="color: white;">COUPON FINDER</h1></a>
-      </li>
-    </ul>
-    <!-- <ul class="nav navbar-nav pull-sm-right">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/about"><span style="color: white;">About Us</span></a>
-    </li>
-      
-    </ul> -->
-  </div>
-</nav>
+<app-header></app-header>
 <div class="row d-flex justify-content-center">
  
     <div class="col-md-4 register-user">
@@ -28,11 +6,11 @@
       <div class="card-body">
         <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
-            <label for="inputName">Name</label>
+            <label for="inputName">Username</label>
             <input class="form-control" type="text" formControlName="name">
             <!-- error -->
             <div class="invalid-feedback" *ngIf="submitted && myForm.name.errors?.required">
-              Name is required.
+              username is required.
             </div>
           </div>
   
@@ -49,20 +27,6 @@
           </div>
   
           <div class="form-group">
-            <label for="inputPassword3">Designation</label>
-            <select class="custom-select form-control" (change)="updateProfile($event.target.value)"
-              formControlName="designation">
-              <option value="">Choose...</option>
-              <option *ngFor="let userProfile of UserProfile" value="{{userProfile}}">{{userProfile}}
-              </option>
-            </select>
-            <!-- error -->
-            <div class="invalid-feedback" *ngIf="submitted && myForm.designation.errors?.required">
-              Choose designation.
-            </div>
-          </div>
-  
-          <div class="form-group">
             <label for="inputVerify3">Mobile No</label>
             <input class="form-control" type="text" formControlName="phoneNumber">
             <!-- error -->
@@ -71,6 +35,15 @@
             </div>
             <div class="invalid-feedback" *ngIf="submitted && myForm.phoneNumber.errors?.pattern">
               Enter Numbers Only
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputPassword3">Password</label>
+            <input class="form-control" type="password" formControlName="password">
+            <!-- error -->
+            <div class="invalid-feedback" *ngIf="submitted && myForm.password.errors?.required">
+              password is required.
             </div>
           </div>
   

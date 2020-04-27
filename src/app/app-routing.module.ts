@@ -10,7 +10,8 @@ import { CartComponent } from './cart/cart.component';
 
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', component: HomeComponent },
+  {path : 'login', component: LoginComponent},
   { path: 'home', component: HomeComponent },
   { path: 'coupons', component: CouponsComponent },
   { path: 'cart', component: CartComponent },

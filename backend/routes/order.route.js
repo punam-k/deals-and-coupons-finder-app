@@ -2,7 +2,7 @@
 const express=require('express');
 
 const router=express.Router();
-const Order=require('../models/order.model')
+const Order=require('../models/order.js')
 
 router.post('/',(req,res)=>{
     let newOrder=new Order({

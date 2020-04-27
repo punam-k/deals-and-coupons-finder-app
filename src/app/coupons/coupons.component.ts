@@ -9,50 +9,50 @@ import { CouponsService } from '../service/coupons.service';
 export class CouponsComponent implements OnInit {
  
   
-  // deliverdooCouponsDetails:any;
-  // doordashCouponsDetails :any;
-  // swiggyCouponsDetails:any;
-  // uberCouponsDetails:any;
-  // zomatoCouponsDetails:any;
+  deliverdooCouponsDetails:any;
+  doordashCouponsDetails :any;
+  swiggyCouponsDetails:any;
+  uberCouponsDetails:any;0
+  zomatoCouponsDetails:any;
 
-  // constructor(private couponService : CouponsService) { }
+  constructor(private couponService : CouponsService) { }
 
-  // ngOnInit(): void {
-  //   this.couponService.getDeliverdooCoupons().subscribe(data=>this.deliverdooCouponsDetails=data);
+  ngOnInit(): void {
+    this.couponService.getDeliverdooCoupons().subscribe(data=>this.deliverdooCouponsDetails=data);
     
-  //   this.couponService.getDoordashCoupons().subscribe(flight=>this.doordashCouponsDetails=flight);
+    this.couponService.getDoordashCoupons().subscribe(flight=>this.doordashCouponsDetails=flight);
 
-  //   this.couponService.getSwiggyCoupons().subscribe(train=>this.swiggyCouponsDetails=train);
+    this.couponService.getSwiggyCoupons().subscribe(train=>this.swiggyCouponsDetails=train);
 
-  //   this.couponService.getUberCoupons().subscribe(hotel=>this.uberCouponsDetails=hotel);
+    this.couponService.getUberCoupons().subscribe(hotel=>this.uberCouponsDetails=hotel);
 
-  //   this.couponService.getZomatoCoupons().subscribe(fashion=>this.zomatoCouponsDetails=fashion);
+    this.couponService.getZomatoCoupons().subscribe(fashion=>this.zomatoCouponsDetails=fashion);
+  }
+
+   Coupon:any = [];
+
+  // constructor(private couponService: CouponsService) { 
+    
+  //   this.readCoupon();
   // }
 
-  Coupon:any = [];
-
-  constructor(private couponService: CouponsService) { 
-    
-    this.readCoupon();
-  }
-
-  ngOnInit() {}
+  // ngOnInit() {}
 
 
-  readCoupon(){
-    this.couponService.getCoupons().subscribe((data) => {
-     this.Coupon = data;
-    })    
-  }
+  // readCoupon(){
+  //   this.couponService.getCoupons().subscribe((data) => {
+  //    this.Coupon = data;
+  //   })    
+  // }
 
-  removeUser(coupon, index) {
-    if(window.confirm('Are you sure?')) {
-        this.couponService.deleteCoupon(coupon._id).subscribe((data) => {
-          this.Coupon.splice(index, 1);
-        }
-      )    
-    }
-  }
+  // removeUser(coupon, index) {
+  //   if(window.confirm('Are you sure?')) {
+  //       this.couponService.deleteCoupon(coupon._id).subscribe((data) => {
+  //         this.Coupon.splice(index, 1);
+  //       }
+  //     )    
+  //   }
+  // }
 
 
 

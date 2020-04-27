@@ -9,7 +9,7 @@ let User = new Schema({
    email: {
       type: String
    },
-   designation: {
+   password: {
       type: String
    },
    phoneNumber: {

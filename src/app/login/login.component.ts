@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   submitted = false;
   userForm: FormGroup;
-  UserProfile:any = ['Admin','BDM','Developer','Finance','HR','Sales'];
+  //UserProfile:any = ['Admin','BDM','Developer','Finance','HR','Sales'];
   
   constructor(
     public fb: FormBuilder,
@@ -29,17 +29,17 @@ export class LoginComponent implements OnInit {
     this.userForm = this.fb.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
-      designation: ['', [Validators.required]],
+      password: ['', [Validators.required]],
       phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]+$')]]
     })
   }
 
   // Choose designation with select dropdown
-  updateProfile(e){
-    this.userForm.get('designation').setValue(e, {
-      onlySelf: true
-    })
-  }
+  // updateProfile(e){
+  //   this.userForm.get('designation').setValue(e, {
+  //     onlySelf: true
+  //   })
+  // }
 
   // Getter to access form control
   get myForm(){
