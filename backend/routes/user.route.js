@@ -1,70 +1,35 @@
-const express = require('express');
-const app = express();
-const userRoute = express.Router();
+const express=require('express');
+const router=express.Router();
+const jwt=require('jsonwebtoken');
+const User=require('../models/user')
 
-// User model
-let User = require('../models/User');
-
-// Add User
-userRoute.route('/create').post((req, res, next) => {
-  User.create(req.body, (error, data) => {
-    if (error) {
-      return next(error)
-    } else {
-      res.json(data)
-    }
-  })
-});
-
-// Get All Users
-userRoute.route('/').get((req, res) => {
-  User.find((error, data) => {
-    if (error) {
-      return next(error)
-    } else {
-      res.json(data)
-    }
-  })
-})
-
-// Get single user
-userRoute.route('/read/:id').get((req, res) => {
-  User.findById(req.params.id, (error, data) => {
-    if (error) {
-      return next(error)
-    } else {
-      res.json(data)
-    }
-  })
+router.get('/',(req,res)=>{
+    res.send('from api route');
 })
 
 
-// Update user
-userRoute.route('/update/:id').put((req, res, next) => {
-  User.findByIdAndUpdate(req.params.id, {
-    $set: req.body
-  }, (error, data) => {
-    if (error) {
-      return next(error);
-      console.log(error)
-    } else {
-      res.json(data)
-      console.log('Data updated successfully')
-    }
+
+router.post('/login',(req,res)=>{
+    let userData=req.body;
+  User.findOne({email:userData.email},(error,user)=>{
+      if(error){
+          console.log(error);
+      }else{
+          if(!user){
+              res.status(401).send('Invalid email');
+          }else{
+              if(user.password!==userData.password){
+                  res.status(401).send('Invalid password');
+              }else{
+                let payload={subject:user._id}
+                let token=jwt.sign(payload,'secretkey')
+                res.status(200).send({token})
+                
+              }
+          }
+      }
   })
+    
 })
 
-// Delete user
-userRoute.route('/delete/:id').delete((req, res, next) => {
-  User.findOneAndRemove(req.params.id, (error, data) => {
-    if (error) {
-      return next(error);
-    } else {
-      res.status(200).json({
-        msg: data
-      })
-    }
-  })
-})
-
-module.exports = userRoute;
+module.exports=router

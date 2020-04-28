@@ -14,6 +14,9 @@
           <a class="nav-link" routerLink="/home"><span class="header-link">Home</span> <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" routerLink="/order"><span class="header-link">Orders</span></a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" routerLink="/coupons"><span class="header-link">Coupons</span></a>
         </li>
         <li class="nav-item">
@@ -32,25 +35,12 @@
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form> -->
-      <!-- <nav class="nav-item">
-        <a class="nav-link" routerLink="/login"><span class="header-link">Login</span></a>
-      </nav> -->
-      <nav class="my-2 my-md-0 mr-md-3">
-        <a class="btn btn-outline-primary" routerLinkActive="active" *ngIf="!replaceUrl"routerLink="/login">Login</a>
-      </nav>
-<!--      
-      <header class="group">
-        <nav class="group">         
-            <ul>
-              <li><a href="register.php" title="">Register</a></li>
-              <li><a href="login.php" title="">Login</a></li>   
-                  <li><a href="logout.php" title="">Logout</a></li>             
-            </ul>
-        </nav>
-    </header> -->
-    <a mat-list-item routerLinkActive="active" *ngIf="replaceUrl"(click)="logout()">
-      <span class="menu-text">LOGOUT</span>
-    </a>
+     <ul class="navbar-nav">
+        <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="/login" routerLinkActive="active">Login</a>
+        <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="/register" routerLinkActive="active">Register</a>
+        <a class="nav-link" style="cursor:pointer" *ngIf="_authService.loggedIn()" (click)="onLogoutClick">Logout</a>        
+    </ul>
+    
 
     </div>
   </nav>

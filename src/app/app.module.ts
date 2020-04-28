@@ -14,6 +14,13 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { CartComponent } from './cart/cart.component';
+import { ToastrModule } from 'ngx-toastr';
+import { AuthService } from './service/auth.service';
+import { AuthGuard } from './service/auth.guard';
+import { OrderComponent } from './order/order.component';
+import { ProductService } from './service/product.service';
+import { ProductComponent } from './home/product/product.component';
+
 
 @NgModule({
   declarations: [
@@ -26,16 +33,19 @@ import { CartComponent } from './cart/cart.component';
     FooterComponent,
     LoginComponent,
     UserEditComponent,
-    CartComponent
+    CartComponent,
+    ProductComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [AuthService,AuthGuard,ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
